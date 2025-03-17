@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot de Biología</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chatbot-container">
+        <h1>Chatbot de Biología</h1>
+        <div id="chatbox">
+            <div id="chat-messages"></div>
+        </div>
+        <input type="text" id="user-input" placeholder="Escribe tu pregunta sobre biología...">
+        <button onclick="sendMessage()">Enviar</button>
+    </div>
+
+    <script>
+        async function sendMessage() {
+            const userInput = document.getElementById('user-input').value;
+            const response = await fetch('/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: userInput })
+            });
+            const data = await response.json();
+            const chatMessages = document.getElementById('chat-messages');
+            chatMessages.innerHTML += `<p><strong>Tú:</strong> ${userInput}</p>`;
+            chatMessages.innerHTML += `<p><strong>Chatbot:</strong> ${data.response}</p>`;
+            document.getElementById('user-input').value = ''; // Limpiar el input
+        }
+    </script>
+</body>
+</html>
