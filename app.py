@@ -2,8 +2,14 @@ from flask import Flask, request, render_template, jsonify
 from knowledge_base import biology_knowledge_base
 import nltk
 from nltk.tokenize import word_tokenize
-
 app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
 
 # Descargar recursos de NLTK (solo la primera vez)
 nltk.download('punkt')
