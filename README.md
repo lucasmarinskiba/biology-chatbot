@@ -1,9 +1,8 @@
-# biology-chatbot
-# Chatbot de Biología
+# Biology Chatbot
 
 Un chatbot simple creado con Python y Flask que responde preguntas sobre biología.
 
-## Cómo ejecutar el proyecto
+## Cómo ejecutar el proyecto localmente
 
 1. Clona el repositorio:
    ```bash
